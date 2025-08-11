@@ -1,0 +1,218 @@
+// Color variables
+$primary-purple: #9675ce;
+$light-purple: #d0c4e8;
+$warning-yellow: #fdc12f;
+$pale-background: #f8f9fa;
+$floralwhite: #FFFAF0;
+$dark-background: #343a40;
+
+// Header and Footer styling
+.header-custom { background-color: $primary-purple !important; }
+.footer-custom { background-color: $light-purple !important; }
+
+// Reservation card styling
+.reservation-card {
+  background-color: $warning-yellow;
+  padding: 15px;
+  font-size: x-large;
+  font-weight: 500;
+  color: $light-purple;
+}
+
+// Content container styling
+.content-container {
+  background: $pale-background;
+  padding: 30px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.row-content { margin: 50px 0; }
+
+// Modal styling to match the screenshot
+.modal {
+  .modal-header {
+    background-color: #6f42c1;
+    color: $floralwhite;              // floral white header text
+    font-weight: bold;
+    border-bottom: none;
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: $floralwhite;            // floral white title text
+    }
+
+    .close {
+      color: $floralwhite;            // floral white close button
+      opacity: 1;
+      font-size: 2rem;
+      text-shadow: none;
+
+      &:hover {
+        color: $floralwhite;
+        opacity: 0.85;
+      }
+    }
+  }
+
+  .modal-body {
+    background-color: $light-purple;
+    padding: 20px;
+
+    .form-group {
+      margin-bottom: 25px;
+
+      label {
+        font-size: 1.05rem;
+        margin-bottom: 10px;
+        color: #333;
+      }
+    }
+
+    // Radio button styling for guests
+    .form-check {
+      margin-right: 15px;
+
+      .form-check-input[type="radio"] {
+        margin-right: 8px;
+        transform: scale(1.15);
+      }
+
+      .form-check-label {
+        font-size: 1rem;
+        color: #000000;
+      }
+    }
+
+    // Section button styling (white text)
+    .btn-group {
+      .btn {
+        border-radius: 4px;
+        font-weight: 600;
+        padding: 8px 20px;
+        margin-right: 0;
+
+        &.btn-success {
+          background-color: #28a745;
+          border-color: #28a745;
+          color: white;
+
+          &.active {
+            background-color: #218838;
+            border-color: #1e7e34;
+            color: white;
+          }
+        }
+
+        &.btn-danger {
+          background-color: #dc3545;
+          border-color: #dc3545;
+          color: white;
+
+          &.active {
+            background-color: #c82333;
+            border-color: #bd2130;
+            color: white;
+          }
+        }
+      }
+    }
+
+    // Date and time input styling
+    .form-control {
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      padding: 10px 15px;
+      font-size: 1rem;
+
+      &:focus {
+        border-color: $primary-purple;
+        box-shadow: 0 0 0 0.2rem rgba(150, 117, 206, 0.25);
+      }
+    }
+
+    // Login modal horizontal layout
+    .form-inline {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 10px;
+
+      .form-control {
+        flex: 1;
+        min-width: 0;
+        padding: 8px 12px;
+        font-size: 1rem;
+      }
+
+      .form-check {
+        display: flex;
+        align-items: center;
+
+        .form-check-input { margin-right: 5px; }
+        .form-check-label { margin-bottom: 0; }
+      }
+    }
+  }
+
+  .modal-footer {
+    background-color: $light-purple;
+    padding: 10px 20px;
+    border-top: none;
+    justify-content: flex-start;      // buttons on the left like screenshot
+
+    .btn {
+      padding: 8px 20px;
+      font-weight: 500;
+
+      &.btn-secondary { background-color: #6c757d; border-color: #6c757d; }
+      &.btn-primary   { background-color: #007bff; border-color: #007bff; }
+    }
+  }
+}
+
+// Keep labels on a fixed width so controls sit beside them (like the spec)
+.form-group > .d-flex > label { min-width: 190px; }
+
+// Make Date/Time inputs look like the spec (two medium boxes with gap)
+.reservation-datetime .form-control {
+  width: 260px;
+  max-width: 100%;
+}
+
+// Login modal wider & longer inputs
+.login-dialog { max-width: 700px; }
+.login-inline {
+  gap: 10px; width: 100%;
+
+  .form-control {
+    flex: 0 1 44%;
+    min-width: 220px;
+    padding: 8px 12px;
+    font-size: 1rem;
+  }
+
+  .form-check {
+    display: flex; align-items: center; margin: 0; white-space: nowrap;
+    .form-check-input { margin-right: 6px; }
+    .form-check-label { margin: 0; }
+  }
+}
+
+
+.bg-purple {
+  background-color: #2e1a6d;
+}
+
+.position-relative {
+  height: 350px; /* Adjust as needed */
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65%;
+}

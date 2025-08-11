@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ristorante Con Fusion: Home</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* 2-column layout for modal rows (label | field) */
+      .form-row-2col {
+        display: grid;
+        grid-template-columns: 190px 1fr;
+        column-gap: 16px;
+        align-items: start;
+      }
+      .form-row-2col > label {
+        margin: 0;
+        line-height: 1.2;
+        white-space: normal; /* allow label wrapping */
+      }
+      .form-row-2col .field {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      /* Date/Time input sizes like spec */
+      .reservation-datetime .form-control {
+        width: 260px;
+        max-width: 100%;
+      }
+      /* Keep footer buttons on the left within modals */
+      .modal .modal-footer {
+        justify-content: flex-end;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-dark navbar-expand-sm fixed-top"
+      style="background-color: #5133a5"
+    >
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#Navbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          <img
+            src="05_images-and-media-additional-resources_img/img/logo.png"
+            width="30"
+            height="30"
+            class="d-inline-block align-top"
+            alt="Logo"
+          />
+        </a>
+        <div class="collapse navbar-collapse" id="Navbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="./index.html"
+                ><i class="fa fa-home"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./aboutus.html"
+                ><i class="fa fa-info"></i> About</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-list"></i> Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                ><i class="fa fa-address-card"></i> Contact</a
+              >
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="loginLink">
+                <i class="fa fa-sign-in-alt"></i> Login
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Login Modal -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog login-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Login</h5>
+            <button
+              type="button"
+              class="close close-floral"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form
+              class="form-inline justify-content-between w-300 login-inline"
+            >
+              <input
+                type="email"
+                class="form-control mr-2"
+                id="email"
+                placeholder="Enter email"
+              />
+              <input
+                type="password"
+                class="form-control mr-2"
+                id="password"
+                placeholder="Password"
+              />
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="remember" />
+                <label class="form-check-label" for="remember"
+                  >Remember me</label
+                >
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-primary">Sign in</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reserve Table Modal -->
+    <div
+      class="modal fade"
+      id="reservationModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="reservationModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="reservationModalLabel">
+              Reserve a Table
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form>
+              <!-- Number of Guests -->
+              <div class="form-group row align-items-center">
+                <label class="col-sm-2 col-form-label font-weight-bold"
+                  >Number of<br />Guests</label
+                >
+                <div class="col-sm-10">
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="guests"
+                      value="1"
+                    />
+                    <label class="form-check-label">1</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="guests"
+                      value="2"
+                    />
+                    <label class="form-check-label">2</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="guests"
+                      value="3"
+                      checked
+                    />
+                    <label class="form-check-label">3</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="guests"
+                      value="4"
+                    />
+                    <label class="form-check-label">4</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="guests"
+                      value="5"
+                    />
+                    <label class="form-check-label">5</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="guests"
+                      value="6"
+                    />
+                    <label class="form-check-label">6</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section -->
+              <div class="form-group row align-items-center">
+                <label class="col-sm-2 col-form-label font-weight-bold"
+                  >Section</label
+                >
+                <div class="col-sm-10">
+                  <div
+                    class="btn-group btn-group-toggle section-toggle"
+                    data-toggle="buttons"
+                  >
+                    <label class="btn btn-success active">
+                      <input
+                        type="radio"
+                        name="section"
+                        value="non-smoking"
+                        checked
+                      />
+                      Non-Smoking
+                    </label>
+                    <label class="btn btn-danger">
+                      <input type="radio" name="section" value="smoking" />
+                      Smoking
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Date and Time -->
+              <div class="form-group row align-items-center">
+                <label class="col-sm-2 col-form-label font-weight-bold"
+                  >Date and<br />Time</label
+                >
+                <div class="col-sm-4 mb-2 mb-sm-0">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="reservationDate"
+                    placeholder="Date"
+                    onfocus="this.type='date'"
+                    onblur="if(!this.value)this.type='text'"
+                  />
+                </div>
+                <div class="col-sm-4">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="reservationTime"
+                    placeholder="Time"
+                    onfocus="this.type='time'"
+                    onblur="if(!this.value)this.type='text'"
+                  />
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="form-group row">
+                <div class="col-sm-10 offset-sm-2">
+                  <button
+                    type="button"
+                    class="btn btn-secondary mr-2"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button type="button" class="btn btn-primary">Reserve</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Reserve Table Modal -->
+    <header class="jumbotron jumbotron-fluid header-custom text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <h1>Ristorante con Fusion</h1>
+            <p>
+              We take inspiration from the world's best cuisines and create a
+              unique fusion experience. Our lipsmacking creations will tickle
+              your culinary senses!
+            </p>
+          </div>
+          <div
+            class="col-12 col-sm-6 d-flex align-items-center justify-content-end"
+          >
+            <div class="text-center">
+              <img
+                class="mb-3"
+                src="05_images-and-media-additional-resources_img/img/logo.png"
+                alt="Logo"
+                width="80"
+                height="80"
+              />
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-warning btn-lg text-white font-weight-normal px-4"
+                  id="reserveButton"
+                >
+                  Reserve Table
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Featured Carousel -->
+    <div
+      id="homeCarousel"
+      class="carousel slide my-4 container"
+      data-ride="carousel"
+      data-interval="5000"
+    >
+      <ol class="carousel-indicators">
+        <li data-target="#homeCarousel" data-slide-to="0"></li>
+        <li data-target="#homeCarousel" data-slide-to="1"></li>
+        <li data-target="#homeCarousel" data-slide-to="2" class="active"></li>
+      </ol>
+      <div class="carousel-inner">
+        <!-- Slide 1 -->
+
+        <div class="carousel-item">
+          <div class="position-relative d-flex container">
+            <img
+              class="img-fluid"
+              src="05_images-and-media-additional-resources_img/img/uthappizza.png"
+              alt="Weekend Grand Buffet"
+            />
+            <div class="bg-purple w-100"></div>
+            <div class="overlay-text text-center text-white p-2">
+              <h2 class="font-weight-bold">
+                Uthappizza
+                <span class="badge badge-danger">HOT</span>
+                <span class="badge badge-secondary">$4.99</span>
+              </h2>
+
+              <p class="lead">
+                A unique combination of Indian Uthappam (pancake) and Italian
+                pizza, topped with Cerignola olives, ripe cherry tomatoes,
+                Vidalia onion, Guntur chillies, and Buffalo Paneer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="position-relative d-flex container">
+            <div class="bg-purple w-100"></div>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="carousel-item active">
+          <div class="position-relative d-flex container">
+            <!-- Image -->
+            <img
+              class="img-fluid"
+              src="05_images-and-media-additional-resources_img/img/alberto.jpg"
+              alt="Alberto Somayya"
+            />
+            <!-- Purple background -->
+            <div class="bg-purple w-100"></div>
+
+            <!-- Overlay Text -->
+            <div class="overlay-text text-center text-white p-2">
+              <h2 class="font-weight-bold">Alberto Somayya</h2>
+              <h4 class="font-weight-bold">Executive Chef</h4>
+              <p class="lead">
+                Award winning three-star Michelin chef with wide International
+                experience having worked closely with whos-who in the culinary
+                world, he specializes in creating mouthwatering Indo-Italian
+                fusion experiences.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#homeCarousel"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#homeCarousel"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+      <button
+        id="carouselToggle"
+        class="btn btn-sm btn-danger"
+        style="position: absolute; bottom: 10px; right: 40px; z-index: 10"
+      >
+        <i class="fa fa-pause text-white"></i>
+      </button>
+    </div>
+
+    <div class="container">
+      <div class="row row-content">
+        <div class="col-12 d-block d-sm-none text-left mb-4">
+          <h4>Our Lipsmacking<br />Culinary Creations</h4>
+        </div>
+        <div class="col-12 col-sm-7">
+          <div class="media">
+            <img
+              class="mr-3"
+              src="05_images-and-media-additional-resources_img/img/uthappizza.png"
+              alt="Uthappizza"
+              width="150"
+              height="150"
+            />
+            <div class="media-body">
+              <h4 class="mt-0">
+                Uthappizza
+                <span class="badge badge-danger">HOT</span>
+                <span class="badge badge-secondary">$4.99</span>
+              </h4>
+              <p class="d-none d-sm-block">
+                A unique combination of Indian Uthappam (pancake) and Italian
+                pizza, topped with Cerignola olives, ripe cherry tomatoes,
+                Vidalia onion, Guntur chillies, and Buffalo Paneer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-5 text-center d-none d-sm-block align-self-center">
+          <h4>Our<br />Lipsmacking<br />Culinary<br />Creations</h4>
+        </div>
+      </div>
+
+      <div class="row row-content">
+        <div class="col-12 d-block d-sm-none mb-3">
+          <h4>This Month's<br />Promotions</h4>
+        </div>
+        <div class="col-12">
+          <div class="promotion-highlight">
+            <div class="row">
+              <div
+                class="col-12 col-sm-3 text-center d-none d-sm-block align-self-center"
+              >
+                <h4>This Month's<br />Promotions</h4>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="media-body">
+                  <h4 class="mt-0">
+                    Weekend Grand Buffet
+                    <span class="badge badge-danger">NEW</span>
+                  </h4>
+                  <p class="d-none d-sm-block">
+                    Featuring mouthwatering combinations with a choice of five
+                    different salads, six enticing appetizers, six main entrees
+                    and five choicest desserts. Free flowing bubbly and soft
+                    drinks. All for just $19.99 per person.
+                  </p>
+                </div>
+              </div>
+              <div class="col-12 col-sm-3 text-center">
+                <img
+                  class="img-fluid"
+                  src="05_images-and-media-additional-resources_img/img/buffet.png"
+                  alt="Weekend Grand Buffet Image"
+                  style="max-width: 150px"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-content">
+        <div class="col-12 d-block d-sm-none text-left mb-4">
+          <h4>
+            Meet our Culinary <br />
+            Specialists
+          </h4>
+        </div>
+        <div class="col-12 col-sm-7">
+          <div class="media">
+            <img
+              class="mr-3"
+              src="05_images-and-media-additional-resources_img/img/alberto.jpg"
+              alt="Alberto"
+              width="120"
+              height="120"
+            />
+            <div class="media-body">
+              <h4 class="mt-0">Alberto Somayya</h4>
+              <h5>Executive Chef</h5>
+              <p class="d-none d-sm-block">
+                Award winning three-star Michelin chef with wide International
+                experience having worked closely with whos-who in the culinary
+                world, he specializes in creating mouthwatering Indo-Italian
+                fusion experiences.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-5 text-center d-none d-sm-block align-self-center">
+          <h4>Meet our <br />Culinary <br />Specialists</h4>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer footer-custom text-black py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-4 offset-1 col-sm-2">
+            <h5>Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Menu</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-7 col-sm-5">
+            <h5>Our Address</h5>
+            <address>
+              121, Clear Water Bay Road, Kowloon, HONG KONG<br />
+              Tel.: +852 1234 5678<br />
+              Fax: +852 8765 4321<br />
+              Email: <a href="mailto:confusion@food.net">confusion@food.net</a>
+            </address>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <p>© Copyright 2018 Ristorante Con Fusion</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
+  </body>
+</html>
